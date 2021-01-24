@@ -1,0 +1,175 @@
+:root { /*ezzel a trukkel megoldja*/
+    --darkgray: #212329;
+    --brightred: #f9423D;
+    --white: #ffffff;
+    --lightred: #f9333dcc;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.nav-container {
+    width: 100%;
+    background-color: var(--darkgray);
+}
+
+.navbar {
+    display: grid;
+    grid-template-columns: 0.2fr auto 1fr; /*a Luxcot elore veszi 0.2 reszt a navbol foglal es az uresseg a vegen 1fr-t*/
+    align-items: center;
+    height: 80px; 
+    width: 90%; /*ket szelen hagy helyet*/
+    max-width: 1720px;
+    margin: 0 auto;
+}
+
+#navbar-logo{/*#-el egy id-ra hivatkozunk*/
+    color: var(--white);
+    justify-self: start;
+    margin-left:  20px;
+}
+
+#navbar-logo {
+    cursor: pointer;
+}
+
+.nav-menu{
+    display: grid;
+    grid-template-columns: repeat(5, auto); /*mivel 5 itemunk van a menubarban es akarjuk, h egyenloen osssza el oket*/
+    list-style: none;
+    text-align: center;
+    width: 70%;
+    justify-self: end;
+}
+
+.nav-links {
+    color: white;
+    text-decoration: none; /*h ne legyene alahuzva a szavak*/
+}
+
+.nav-links:hover{
+    color: var(--brightred);
+    transition: all 0.2 ease-out
+}
+
+.nav-links-btn{
+    background-color: var(--brightred);
+    padding: 6px 16px;
+    border-radius: 4px; /*kerekitett oldalak a gombra*/
+}
+.nav-links-btn:hover{
+    background-color: transparent;
+    color: white;
+    padding: 5px 15px; /*a gomb belseje igazabol kisebb lesz kicsivel*/
+    border-radius: 4px; /*kerekseg megmarad ha remaesz is*/
+    border: dashed 2px var(--brightred); /*dashed vagyis szaggatott vonal, 2 px vastagnyi keret ami brightred szinu*/
+    transition: all 0.3s ease-out;
+}
+
+.menu-toggle.bar{
+    width: 25px;
+    height: 3px;
+    margin:5px auto;
+    transition: all 0.3s ease-in-out;
+    background: white; 
+}
+
+@media screen and ( max-width: 968px) {
+    .nav-container{
+        position: relative;
+    }
+
+    .nav-menu {
+        display: grid;
+        grid-template-columns: auto;
+        background: var(--brightred);
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        top: 80px;
+        left: -100%; /*ezt es az alatta levo sort kell kikomentelni, h visszajojjon a menusor, de a hamburgi nem jelenik meg akkor se*/
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    #navbar-logo {
+        margin-left: 20px;
+    }
+
+    .nav-menu.active{
+        background: var(--darkgray);
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+
+    .nav-links{
+        text-align: center;
+        line-height: 60px;
+        width: 100%;
+        display: table;
+    }
+
+    .nav-links:hover{
+        background-color: var(--brightred);
+        color: white;
+        transition: all 0.4s ease-out;
+    }
+
+    .navbar{
+        width: 100%; /*kitolti szelessegben a kepernyot*/
+    }
+
+    .nav-links-btn {
+        border: none;
+        padding: 0;
+        border-radius: 0;
+        background-color: var(--darkgray);
+        color: var(--white);
+        transition: all 0.4s ease-out;
+    }
+
+    .nav-links-btn:hover {
+        border: none;
+        padding: 0;
+        border-radius: 0;
+        background-color: var(--brightred);
+        color: var(--white);
+        transition: all 0.4s ease-out;
+    }
+
+    #mobile-menu {
+        position: absolute;
+        top: 20%; /*20%al lennebb megy mint a lap teteje*/
+        right: 5%;/*5%nyira lesz a jobb oldaltol*/
+        transform: translate(5%, 20%);
+    }
+
+    .menu-toggle .bar {
+        display: block;
+        cursor: pointer;
+    }
+ 
+    .menu-toggle:hover{
+        cursor: pointer;
+    }
+
+    #mobile-menu.is-active.bar:nth-child(2) {
+        opacity: 0; /*a hambibol a kozepso vonal eltunik*/
+    }
+
+    #mobile-menu.is-active.bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg); /*az elso es harmadik vonal egymasra csuszik*/
+    }
+
+    #mobile-menu.is-active.bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
+
